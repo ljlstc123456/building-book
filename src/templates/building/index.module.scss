@@ -1,0 +1,146 @@
+.sliderContainer{
+	position: fixed !important;
+	left:0;
+	right:0;
+	top:0;
+	height:250px;
+	.img{
+		height:250px;
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	
+}
+.page{
+	position: absolute;
+	right:20px;
+	bottom:10px;
+	width:40px;
+	height:20px;
+	line-height: 20px;
+	background:rgba(255,255,255,0.4);
+	text-align: center;
+	border-radius:16px;
+	font-size:12px;
+	color:#efefef;
+	font-family:PingFang-SC-Medium;
+	font-weight:500;
+	z-index: 2;
+}
+.projectName{
+	display: flex;
+	align-items: center;
+	color:#484D4F;
+	font-size:18px;
+	font-family:PingFang-SC-Bold;
+	font-weight:bold;
+}
+.minTitle{
+	margin-top:10px;
+	color:#484D4F;
+	font-size:12px;
+	font-family:PingFang-SC-Medium;
+	font-weight:500;
+}
+.price{
+	margin-top:9px;
+	color:#E96C57;
+	font-size:15px;
+	font-family:PingFang-SC-Bold;
+	font-weight:bold;
+}
+.more{
+	display: block;
+	text-align: center;
+	padding:15px;
+}
+.tips{
+	background: #439CEC;
+	border-radius:2px;
+	font-size:10px;
+	color:#fff;
+	padding:1px 3px;
+}
+.imgTitle{
+	margin-top:30px;
+	font-family:PingFang-SC-Bold;
+	font-weight:bold;
+	font-size:18px;
+	background: #fff;
+	.title{
+		color:#0F1010;
+		font-size:15px;
+		font-family:PingFang-SC-Medium;
+		font-weight:500;
+	}
+}
+
+.houseType{
+	overflow: auto;
+	white-space: nowrap;
+	margin-top: 16px;
+	margin-bottom: 30px;
+	&>div{
+		min-width:160px;
+		display: inline-block;
+		margin-right:10px;
+		&:last-child{
+			margin-right:0;
+		}
+		.img{
+			width:100%;
+			height:150px;
+			background-position: center;
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+	}
+	.line1{
+		display: flex;
+		justify-content: space-between;
+		color:#0F1010;
+		font-size:15px;
+		font-family:PingFang-SC-Medium;
+		font-weight:500;
+		color:#0F1010;
+		margin-top:5px;
+		span:last-child{
+			margin-left:10px;
+			color:#E7634C;
+		}
+	}
+	.line2,.line3{
+		margin-top:3px;
+		font-size:12px;
+		font-family:PingFang-SC-Medium;
+		font-weight:500;
+		color:rgba(101,104,105,1);
+		span:first-child{
+			margin-right:5px;
+		}
+	}
+	.line3{
+		color:rgba(231,99,76,1);
+	}
+}
+
+.peitao{
+	margin-top:20px;
+}
+
+.footer{
+	position: fixed;
+	left:0;
+	right:0;
+	bottom:0;
+	background: #fff;
+	padding:10px 20px 20px;
+	z-index: 3;
+	a{
+		text-align: center;
+		box-sizing: border-box;
+		width:100%;
+		justify-content:center;
+	}
+}

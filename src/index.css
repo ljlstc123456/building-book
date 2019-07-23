@@ -7,7 +7,87 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+*{
+	margin:0;
+	padding:0;
+}
+
+.button{
+	padding:7px;
+	text-decoration: none;
+	border-radius: 3px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-family:PingFang-SC-Bold;
+	font-weight:bold;
+	font-size:15px;
+	letter-spacing: 2px;
+}
+.button.button1{
+	color:#439CEC;
+	background:#D5E7F3 ;
+}
+.button.button2{
+	background:#F19F5E ;
+	color:#fff;
+}
+.button:active{
+	opacity: .9;
+	color:
+}
+
+.detailInfo{
+	display: flex;
+	flex-wrap: wrap;
+	background: #fff;
+	padding:20px;
+}
+
+.detailInfo div{
+		width:50%;
+		overflow:hidden;
+		text-overflow:ellipsis; 
+		white-space: nowrap;
+		font-size:16px;
+		color:#000000;
+		margin-bottom:10px;	
+}
+.detailInfo div label{
+	color:#A5A7A9;
+	margin-right:10px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.icon{
+	display: inline-block;
+	width:30px;
+	height:30px;
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.icon.icon1
+{
+	background-image: url('./icon1.png') ;
+}
+.icon.icon2
+{
+	background-image: url('./icon2.png') ;
+}
+.icon.icon3
+{
+	background-image: url('./icon3.png') ;
+}
+.icon.icon4
+{
+	background-image: url('./icon4.png') ;
+}
+.icon.icon5
+{
+	background-image: url('./icon5.png') ;
 }
