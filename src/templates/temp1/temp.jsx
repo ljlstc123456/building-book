@@ -3,33 +3,27 @@ import { withRouter } from 'react-router-dom';
 import style from './index.module.scss'
 import ShadowBox from '../../components/shadowBox'
 import PhotoView from '../../components/photoView'
+import LoadingDiv from '../../components/loadingDiv'
 import $model from '../../api.js'
 import title from './title.jpg'
+import androidIOS from '../../components/androidIOS'
 class Temp extends Component {
   constructor(props) {
     super(props);
     this.state = {
 			previewImg:"",
-			showInfo:{
-				"projectId": 0,
-				"houseTypeId": 0,
-				"houseTypeName": "",
-				"houseNo": "",
-				"area": "",
-				"storey": "",
-				"price": "",
-				"totalPrice": "",
-				"payType": "",
-				"downPayment": "",
-				"monthlyPayment": "",
-				"rent": "",
-				"returnRate": "",
-				"cause": "",
-				"images": ""
-			}
+			loading:true,
+			info:{
+				
+			},
+			errorTxt:'',
+			id:this.props.location.search?this.props.location.search.split("=")[1].split("&")[0]:'',
+			tel:this.props.location.search?this.props.location.search.split("=")[2]:''
 		};
 		this.preview = this.preview.bind(this) ;
 		this.closeProview = this.closeProview.bind(this) ;
+		this.getDetail = this.getDetail.bind(this) ;
+		this.formatData = this.formatData.bind(this) ;
   }
 	
 	preview(img){
@@ -44,11 +38,51 @@ class Temp extends Component {
 	}
 	
 	componentDidMount(){
-		
+		this.getDetail()
 	}
-
+	
+	getDetail(){
+		var that = this;
+		if(this.props.location.search){
+			$model.product({id:this.state.id}).then(i=>{
+				this.formatData(i.data)
+			}).catch(i=>{
+				this.setState({
+					errorTxt:'找不到产品!'
+				})
+			})
+		}else {
+			androidIOS(that)
+		}
+	}
+	
+	formatData(data){
+		this.setState({
+			info:{...data},
+			loading:false
+		})
+	}
   render() {
+		let {
+			projectId,
+			houseTypeId,
+			houseTypeName,
+			houseNo,
+			area,
+			storey,
+			price,
+			totalPrice,
+			payType,
+			downPayment,
+			monthlyPayment,
+			rent,
+			returnRate,
+			cause,
+			fileBaseUrl,
+			images=''
+		} = this.state.info ;
 		return (
+		<LoadingDiv loading={this.state.loading} errorTxt={this.state.errorTxt}>
 			<div>
 			  {/*图片查看器*/}
 			  <PhotoView close={this.closeProview} img={this.state.previewImg}></PhotoView>
@@ -60,19 +94,19 @@ class Temp extends Component {
 				<div style={{zIndex:1,position:'relative'}}>
 					{/*基本信息*/}
 					<div className={style.baseInfo}>
-						<div className={style.title}>房号25-02</div>
+						<div className={style.title}>{houseTypeName+" "+houseNo}</div>
 						<ul className={style.info3}>
 							<li>
-								<p>5000元/㎡</p>
+								<p>{price}</p>
 								<p>参考均价</p>
 							</li>
 							<li>
-								<p>5000元/㎡</p>
-								<p>参考均价</p>
+								<p>{totalPrice}</p>
+								<p>参考总价</p>
 							</li>
 							<li>
-								<p>5000元/㎡</p>
-								<p>参考均价</p>
+								<p>{downPayment}</p>
+								<p>首付</p>
 							</li>
 						</ul>
 					</div>
@@ -83,19 +117,19 @@ class Temp extends Component {
 					<div className='detailInfo'>
 						<div>
 							<label>户型:</label>
-							<span>3/4局势</span>
+							<span>{houseTypeName}</span>
 						</div>
 						<div>
-							<label>户型:</label>
-							<span>3/4局势</span>
+							<label>建面:</label>
+							<span>{area}</span>
 						</div>
 						<div>
-							<label>户型:</label>
-							<span>3/4局势</span>
+							<label>首付:</label>
+							<span>{downPayment}</span>
 						</div>
 						<div>
-							<label>户型:</label>
-							<span>3/4局势</span>
+							<label>月供:</label>
+							<span>{monthlyPayment}</span>
 						</div>
 					</div>
 					
@@ -103,19 +137,19 @@ class Temp extends Component {
 					<div className={style.otherInfo}>
 						<div>
 							<i className="icon icon1"></i>
-							<p>按揭</p>
+							<p>{({Mortgage:'按揭', Full:'全款' })[payType]}</p>
 						</div>
 						<div>
 							<i className="icon icon2"></i>
-							<p>4/35层</p>
+							<p>{storey}</p>
 						</div>
 						<div>
 							<i className="icon icon3"></i>
-							<p>5680元</p>
+							<p>{rent}</p>
 						</div>
 						<div>
 							<i className="icon icon4"></i>
-							<p>30%</p>
+							<p>{returnRate}</p>
 						</div>
 					</div>
 					
@@ -125,28 +159,28 @@ class Temp extends Component {
 							icon={1}
 							title="推荐理由"
 						>
-							<p>1.价格低于周边1000元/平左右；</p>
-							<p>2.户型均为朝南方向；</p>
-							<p>3.绿化率高达35%,小区外即使天井河流；</p>
-							<p>4.离高铁站仅3分钟车程。</p>
+							<pre>{cause}</pre>
 						</ShadowBox>
 					</div>
 					
 					{/*产品图片*/}
-					<h3 className={style.imgTitle}>产品图片(3)</h3>
+					{
+						images&&<h3 className={style.imgTitle}>产品图片({images.split(',').length})</h3>
+					}
+					
 					
 					<div className={style.imgWrap}>
 						{
-							Array.from({length:10}).map(i=><div onClick={()=>{this.preview(title)}}><img src={title}/></div>)
+							images&&images.split(',').map(i=><div onClick={()=>{this.preview(fileBaseUrl+i)}}><img src={fileBaseUrl+i}/></div>)
 						}
 					</div>
 					
 					<div className={style.footer}>
-						<a href="javascript:;" className="button button1">
+						<a href={"#/building?id="+projectId+"&tel="+this.state.tel} className="button button1">
 							<i className="icon icon2"></i>
 							<span>查看楼盘资料</span>
 						</a>
-						<a href="javascript:;" className="button button2">
+						<a href={"tel:"+this.state.tel} className="button button2">
 							<i className="icon icon5"></i>
 							<span>联系销售员</span>
 						</a>
@@ -154,6 +188,7 @@ class Temp extends Component {
 					
 				</div>
 			</div>
+		</LoadingDiv>
 		)
   }
 }

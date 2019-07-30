@@ -5,23 +5,31 @@ import style from './index.module.scss'
 import 'swiper/dist/css/swiper.min.css'
 import title from '../temp1/title.jpg'
 import ShadowBox from '../../components/shadowBox'
+import PhotoView from '../../components/photoView'
 import LoadingDiv from '../../components/loadingDiv'
 import $model from '../../api.js'
+import androidIOS from '../../components/androidIOS'
 class Temp extends Component {
   constructor(props) {
     super(props);
     this.state = {
+			previewImg:"",
 			activeIndex:0,
 			info:{
 			},
 			photos:[],
 			loading:true,
-			showMore:false
+			showMore:false,
+			errorTxt:'',
+			id:this.props.location.search?this.props.location.search.split("=")[1].split("&")[0]:'',
+			tel:this.props.location.search?this.props.location.search.split("=")[2]:''
 		};
 		
 		this.getDetail = this.getDetail.bind(this) ;
 		this.swiper = this.swiper.bind(this) ;
 		this.formatData = this.formatData.bind(this) ;
+		this.preview = this.preview.bind(this) ;
+		this.closeProview = this.closeProview.bind(this) ;
   }
 	
 	componentDidMount(){
@@ -43,42 +51,56 @@ class Temp extends Component {
 	getDetail(){
 		var that = this;
 		if(this.props.location.search){
-			$model.project({id:this.props.location.search.split("=")[1]}).then(i=>{
+			$model.project({id:this.state.id}).then(i=>{
 				this.formatData(i.data)
+			}).catch(i=>{
+				this.setState({
+					errorTxt:'找不到项目!'
+				})
 			})
 		}else {
-			//全局回调
-			window.setInfo = function(data){
-				that.formatData(data)
-			}
-			if('onJsLoadCompleted' in window){//触发android
-				window.onJsLoadCompleted()
-			} else{//触发ios
-				window.webkit.messageHandlers.onJsLoadCompleted.postMessage('')
-			}
+			androidIOS(that)
 		}
 	}
 	
 	formatData(data){
+		let photos = [] ;
+		data.albums.forEach((i)=> {
+			photos = photos.concat(i.images)
+		});
 		this.setState({
 			info:{...data},
-			photos:data.albums.map(i=>i.images).flat(),
-			loading:false
+			photos:photos,
+			loading:false,
+			errorTxt:false,
 		},()=>{
 			this.swiper()
 		})
 	}
+	
+	preview(img){
+		this.setState({
+			previewImg:img
+		})
+	}
+	closeProview(){
+		this.setState({
+			previewImg:""
+		})
+	}
+	
   render() {
 		return (
-		<LoadingDiv loading={this.state.loading}>
+		<LoadingDiv loading={this.state.loading} errorTxt={this.state.errorTxt}>
 			<div>
+				<PhotoView close={this.closeProview} img={this.state.previewImg}></PhotoView>
 			  {/*banner*/}
 				<div className={style.sliderContainer+" swiper-container"}>
 					<div className="swiper-wrapper">
 					{this.state.photos.map(i=>{
 						return (
 							<div className="swiper-slide">
-								<div className={style.img} style={{'backgroundImage':'url('+this.state.info.fileBaseUrl+i+')'}}></div>
+								<div onClick={()=>{this.preview(this.state.info.fileBaseUrl+i)}} className={style.img} style={{'backgroundImage':'url('+this.state.info.fileBaseUrl+i+')'}}></div>
 							</div>
 						)
 					})}
@@ -177,12 +199,12 @@ class Temp extends Component {
 					<a href="javascript:;" onClick={()=>{this.setState({showMore:!this.state.showMore})}} className={style.more+" button button1"}>
 						<span>{this.state.showMore?'收起更多信息':'更多项目信息'}</span>
 					</a>
-					<h3 className={style.imgTitle}>户型介绍(3)</h3>
+					<h3 className={style.imgTitle}>户型介绍({(this.state.info.houseTypes||[]).length})</h3>
 					<div className={style.houseType}>
 					{
 						(this.state.info.houseTypes||[]).map(i=>{
 							return (<div>
-								<div className={style.img} style={{'backgroundImage':'url('+this.state.info.fileBaseUrl+i.image+')'}}></div>
+								<div onClick={()=>{this.preview(this.state.info.fileBaseUrl+i.image)}} className={style.img} style={{'backgroundImage':'url('+this.state.info.fileBaseUrl+i.image+')'}}></div>
 								<p className={style.line1}>
 									<span>{i.name}</span>
 									<span>约{i.totalPrice}/套</span>
@@ -218,9 +240,9 @@ class Temp extends Component {
 				</div>
 				
 				<div className={style.footer}>
-					<a href="javascript:;" className="button button2">
+					<a href={"tel:"+this.state.tel} className="button button2">
 						<i className="icon icon5"></i>
-						<span>159821113780</span>
+						<span>{this.state.tel}</span>
 					</a>
 				</div>
 			</div>

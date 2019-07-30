@@ -15,7 +15,13 @@
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: contain;
-		background-image: url(./loading.gif)
+		background-image: url(./loading.gif);
+		&.no{
+			background-image: none;
+			width:100%;
+			color:#ccc;
+			text-align: center;
+		}
 	}
 	p{
 		position: absolute;

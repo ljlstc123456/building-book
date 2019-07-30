@@ -55,8 +55,7 @@ instance.interceptors.request.use((async (req) => {
 instance.interceptors.response.use((res) => {
 
 	if (res.status == 200) {
-		if (!res.data.success) {
-			
+		if (!res.data.success || !res.data.data) {
 			return Promise.reject();
 		}
 		return res.data;
