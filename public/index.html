@@ -23,6 +23,9 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+		<div id="bg" style="position: fixed;left:0;right:0;top:0;bottom:0;z-index: 10;background-position: center;background-size: cover;">
+			<div id="timer" style="display: none;position:absolute;right:10px;top:10px;padding:5px 20px;border-radius: 5px;background-color: rgba(0,0,0,.5);color:#fff"></div>
+		</div>
     <div id="root"></div>
     <!--
       This HTML file is a template.
@@ -34,5 +37,25 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+		<script>
+		  var image = new Image();
+			image.onload  = function() {
+				document.getElementById('bg').style.backgroundImage = 'url(./bg.png)' ;
+				var $timer = document.getElementById('timer') ;
+				var count = 3 ;
+				$timer.style.display = 'block' ;
+				$timer.innerHTML = count+"s" ;
+				var timer = setInterval(function(){
+					count -- ;
+					$timer.innerHTML = count+"s" ;
+				},1000) ;
+				setTimeout(function(){
+					clearInterval(timer)
+					document.getElementById('bg').style.display = 'none' ;
+				},3200)
+				
+			}
+			image.src = './bg.png'
+		</script>
   </body>
 </html>

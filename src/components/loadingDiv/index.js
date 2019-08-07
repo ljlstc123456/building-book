@@ -6,7 +6,7 @@ const shadowBox = (props) => (
 			{props.loading?(
 				<div className={style.loading}>
 					<div className={props.errorTxt?style.no:''}>{props.errorTxt||''}</div>
-					<p>胜利助手版权所有</p>
+					<p>胜蓝助手</p>
 				</div>
 			):props.children}
     </div>

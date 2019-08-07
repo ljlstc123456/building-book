@@ -104,10 +104,14 @@ class Temp extends Component {
 								<p>{totalPrice}</p>
 								<p>参考总价</p>
 							</li>
-							<li>
-								<p>{downPayment}</p>
-								<p>首付</p>
-							</li>
+							{payType == 'Mortgage'?(
+								<li>
+									<p>{downPayment}</p>
+									<p>首付</p>
+								</li>
+							):(<li></li>)
+							}
+							
 						</ul>
 					</div>
 					
@@ -123,14 +127,19 @@ class Temp extends Component {
 							<label>建面:</label>
 							<span>{area}</span>
 						</div>
-						<div>
-							<label>首付:</label>
-							<span>{downPayment}</span>
-						</div>
-						<div>
-							<label>月供:</label>
-							<span>{monthlyPayment}</span>
-						</div>
+						{
+							payType=='Mortgage'?(
+							<React.Fragment>
+								<div>
+									<label>首付:</label>
+									<span>{downPayment}</span>
+								</div>
+								<div>
+									<label>月供:</label>
+									<span>{monthlyPayment}</span>
+								</div>
+							</React.Fragment>):null
+						}
 					</div>
 					
 					{/*其他信息*/}
@@ -144,23 +153,40 @@ class Temp extends Component {
 							<p>{storey}</p>
 						</div>
 						<div>
-							<i className="icon icon3"></i>
-							<p>{rent}</p>
+							{rent?(
+							<React.Fragment>
+								<i className="icon icon3"></i>
+								<p>{rent}</p>
+							</React.Fragment>):(
+							<React.Fragment>
+								<i className="icon"></i>
+								<p></p>
+							</React.Fragment>
+							)
+							}
 						</div>
 						<div>
+						{returnRate?(<React.Fragment>
 							<i className="icon icon4"></i>
 							<p>{returnRate}</p>
+						</React.Fragment>):(
+							<React.Fragment>
+								<i className="icon"></i>
+								<p></p>
+							</React.Fragment>
+							)
+						}
 						</div>
 					</div>
 					
 					{/*推荐理由*/}
 					<div style={{padding:'0 20px 30px',background:'#fff'}}>
-						<ShadowBox
+					 {cause?(<ShadowBox
 							icon={1}
 							title="推荐理由"
 						>
 							<pre>{cause}</pre>
-						</ShadowBox>
+						</ShadowBox>):null}
 					</div>
 					
 					{/*产品图片*/}

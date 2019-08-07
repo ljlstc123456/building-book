@@ -242,7 +242,7 @@ class Temp extends Component {
 				<div className={style.footer}>
 					<a href={"tel:"+this.state.tel} className="button button2">
 						<i className="icon icon5"></i>
-						<span>{this.state.tel}</span>
+						<span>联系销售员</span>
 					</a>
 				</div>
 			</div>
