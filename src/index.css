@@ -55,8 +55,13 @@ body {
 		font-family: PingFang-SC-Medium;
 }
 .detailInfo div label{
+	white-space: nowrap;
 	color:#A5A7A9;
 	margin-right:10px;
+}
+.detailInfo div.block{
+	width:100%;
+	display: flex;
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
