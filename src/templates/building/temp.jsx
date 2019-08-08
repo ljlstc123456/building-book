@@ -206,16 +206,17 @@ class Temp extends Component {
 							return (<div>
 								<div onClick={()=>{this.preview(this.state.info.fileBaseUrl+i.image)}} className={style.img} style={{'backgroundImage':'url('+this.state.info.fileBaseUrl+i.image+')'}}></div>
 								<p className={style.line1}>
-									<span>{i.name}</span>
-									<span>约{i.totalPrice}/套</span>
+									{i.name?<span>{i.name}</span>:null}
+									{i.totalPrice?<span>约{i.totalPrice}/套</span>:null}
 								</p>
 								<p className={style.line2}>
-									<span>建面 {i.structureArea} {i.direction}</span>
-									<span className={style.tips}>住宅</span>
+									{i.structureArea?<span>建面 {i.structureArea} {i.direction}</span>:null}
+									
+									{/*<span className={style.tips}>住宅</span>*/
 								</p>
 								<p className={style.line3}>
-									<span>首付{i.downPayment}</span>
-									<span> 月供{i.monthlyPayment}元</span>
+								{i.downPayment?<span>首付{i.downPayment}</span>:null}
+								{i.monthlyPayment?<span> 月供{i.monthlyPayment}元</span>:null}
 								</p>
 							</div>)
 						})
