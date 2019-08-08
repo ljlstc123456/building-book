@@ -212,7 +212,7 @@ class Temp extends Component {
 								<p className={style.line2}>
 									{i.structureArea?<span>建面 {i.structureArea} {i.direction}</span>:null}
 									
-									{/*<span className={style.tips}>住宅</span>*/
+									{/*<span className={style.tips}>住宅</span>*/}
 								</p>
 								<p className={style.line3}>
 								{i.downPayment?<span>首付{i.downPayment}</span>:null}
