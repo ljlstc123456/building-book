@@ -121,11 +121,11 @@ class Temp extends Component {
 					<div className='detailInfo' style={{padding:'10px 0px'}}>
 						<div>
 							<label>占地:</label>
-							<span>{this.state.info.totalArea}</span>
+							<span>{this.state.info.totalArea}亩</span>
 						</div>
 						<div>
 							<label>建面:</label>
-							<span>{this.state.info.structureArea}</span>
+							<span>{this.state.info.structureArea}㎡</span>
 						</div>
 						<div>
 							<label>拿地:</label>
@@ -137,7 +137,7 @@ class Temp extends Component {
 						</div>
 						<div>
 							<label>公摊:</label>
-							<span>{this.state.info.pooled}</span>
+							<span>{this.state.info.pooled}%</span>
 						</div>
 						<div>
 							<label>交房:</label>
@@ -145,7 +145,7 @@ class Temp extends Component {
 						</div>
 						<div>
 							<label>容积率:</label>
-							<span>{this.state.info.plotRate}%</span>
+							<span>{this.state.info.plotRate}</span>
 						</div>
 						<div>
 							<label>绿化率:</label>
@@ -155,41 +155,41 @@ class Temp extends Component {
 							<React.Fragment>
 							<div>
 								<label>总栋数:</label>
-								<span>{this.state.info.totalBuildings}</span>
+								<span>{this.state.info.totalBuildings}栋</span>
 							</div>
 							<div>
 								<label>层高区间:</label>
-								<span>{this.state.info.storeyRange}</span>
+								<span>{this.state.info.storeyRange}米</span>
 							</div>
 							<div>
 								<label>总户数:</label>
-								<span>{this.state.info.totalHouses}</span>
+								<span>{this.state.info.totalHouses}户</span>
 							</div>
 							<div>
 								<label>物业费:</label>
-								<span>{this.state.info.propertyFee}</span>
+								<span>{this.state.info.propertyFee}元/平米</span>
 							</div>
 							<div>
 								<label>停车位:</label>
-								<span>{this.state.info.parkingSpotCount}</span>
+								<span>{this.state.info.parkingSpotCount}个</span>
 							</div>
 							<div>
 								<label>项目现状:</label>
 								<span>{this.state.info.situation}</span>
 							</div>
-							<div style={{width:'100%'}}>
+							<div className="block">
 								<label>在售楼栋:</label>
 								<span>{this.state.info.onSaleBuildings}</span>
 							</div>
-							<div style={{width:'100%'}}>
+							<div className="block">
 								<label>开发企业:</label>
 								<span>{this.state.info.developEnterprise}</span>
 							</div>
-							<div style={{width:'100%'}}>
+							<div className="block">
 								<label>物业企业:</label>
 								<span>{this.state.info.propertyEnterprise}</span>
 							</div>
-							<div style={{width:'100%'}}>
+							<div className="block">
 								<label>开发银行:</label>
 								<span>{this.state.info.developBank}</span>
 							</div>
