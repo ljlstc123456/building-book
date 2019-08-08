@@ -133,7 +133,7 @@ class Temp extends Component {
 						</div>
 						<div>
 							<label>产权:</label>
-							<span>{({Forty:'40年',Seventy:'70年'})[this.state.info.propertyRight]}</span>
+							<span>{({Forty:'40年',Fifty:'50年',Seventy:'70年'})[this.state.info.propertyRight]}</span>
 						</div>
 						<div>
 							<label>公摊:</label>
