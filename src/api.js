@@ -9,6 +9,7 @@ import moment from 'moment';
 
 axios.defaults.withCredentials = true;
 
+let QQmapKey = '44YBZ-HO7KV-RZ7P2-U54DX-T36PF-UJF34'
 const instance = axios.create({
 	timeout: 60000,
 	withCredentials: false,
