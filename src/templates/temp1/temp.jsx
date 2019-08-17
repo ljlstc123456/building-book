@@ -77,15 +77,17 @@ class Temp extends Component {
 			info:{...data},
 			loading:false
 		}) ;
-		window.wx.updateAppMessageShareData({ 
-		    title: `为您精心推荐,${data.area} ${data.houseTypeName} ${data.totalPrice}`, // 分享标题
-		    desc: '点击查看优质房源', // 分享描述
-		    link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-		    imgUrl: data.fileBaseUrl+data.images.split(',')[0], // 分享图标
-		    success: function () {
-		      // 设置成功
-		    }
-		})
+		window.wx.ready(function () {
+			window.wx.updateAppMessageShareData({ 
+			    title: `为您精心推荐,${data.area} ${data.houseTypeName} ${data.totalPrice}`, // 分享标题
+			    desc: '点击查看优质房源', // 分享描述
+			    link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+			    imgUrl: data.fileBaseUrl+data.images.split(',')[0], // 分享图标
+			    success: function () {
+			      // 设置成功
+			    }
+			})
+		}) ;
 	}
 	//打开地图
 	openLocation = ()=>{
