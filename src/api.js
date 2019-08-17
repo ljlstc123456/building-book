@@ -82,13 +82,11 @@ const makeGet = (url,type="param") => {
 		}
 		var paramUrl = Object.keys(params).map((key)=>{
         // body...
-        return encodeURIComponent(key) + "=" + encodeURIComponent(params[key]);
+        return encodeURIComponent(key) + "=" + (type=='notranslate'?params[key]:encodeURIComponent(params[key]));
     }).join("&");
 		
-		if(type == 'param') {
+		if(type == 'param' || type=='notranslate') {
 			return instance.get(`${baseURL}${url}?${paramUrl}`)
-		} else if(type == 'other'){
-			return instance.get(`${url}?${paramUrl}`)
 		} else {
 			//console.log(params) ;
 			return instance.get(`${baseURL}${url}/${params.id}`)
@@ -129,5 +127,7 @@ export default {
 	//项目详情
 	project: makeGet('/project','path'),
 	//translate
-	lan:makeGet('https://apis.map.qq.com/ws/coord/v1/translate','other')
+	translateXY:makeGet('/home/location/translate'),
+	//获取微信签名
+	wxSign:makeGet('/home/wx/sign')
 }
