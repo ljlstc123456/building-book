@@ -10,7 +10,7 @@ export default ()=>{
 			timestamp: res.data.timeStamp, // 必填，生成签名的时间戳
 			nonceStr: res.data.nonceStr, // 必填，生成签名的随机串
 			signature: res.data.signature,// 必填，签名
-			jsApiList: ['previewImage','openLocation'] // 必填，需要使用的JS接口列表
+			jsApiList: ['previewImage','openLocation','updateAppMessageShareData'] // 必填，需要使用的JS接口列表
 		});
 	}) ;
 }
