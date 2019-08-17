@@ -23,6 +23,7 @@ class Temp extends Component {
 			id:this.props.location.search?this.props.location.search.split("=")[1].split("&")[0]:'',
 			tel:this.props.location.search?this.props.location.search.split("=")[2]:''
 		};
+		console.log(this.props.location) ;
 		this.preview = this.preview.bind(this) ;
 		// this.closeProview = this.closeProview.bind(this) ;
 		this.getDetail = this.getDetail.bind(this) ;
@@ -81,6 +82,16 @@ class Temp extends Component {
 	//打开地图
 	openLocation = ()=>{
 		if(this.state.lat && this.state.lng){
+			// alert(1)
+			// window.WeixinJSBridge.invoke("openProductView",{      
+			// "latitude" : 23.113, //纬度   
+			// "longitude" : 113.23, //经度   
+			// "name" : "TIT创意园", //POI名称   
+			// "address" : "⼲⼴广州市海珠区新港中路397号", //地址   
+			// "scale" : 14, //地图缩放级别   
+			// "infoUrl" : "http://weixin.qq.com/", //查看位置界⾯面底部的超链接                   
+   //    })
+						
 			window.wx.openLocation({
 				latitude: this.state.lat, // 纬度，浮点数，范围为90 ~ -90
 				longitude: this.state.lng, // 经度，浮点数，范围为180 ~ -180。
