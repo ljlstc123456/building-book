@@ -86,6 +86,8 @@ const makeGet = (url,type="param") => {
 		
 		if(type == 'param') {
 			return instance.get(`${baseURL}${url}?${paramUrl}`)
+		} else if(type == 'other'){
+			return instance.get(`${url}?${paramUrl}`)
 		} else {
 			//console.log(params) ;
 			return instance.get(`${baseURL}${url}/${params.id}`)
@@ -124,5 +126,7 @@ export default {
 	//产品详情
 	product: makeGet('/project/product','path'),
 	//项目详情
-	project: makeGet('/project','path')
+	project: makeGet('/project','path'),
+	//translate
+	lan:makeGet('https://apis.map.qq.com/ws/coord/v1/translate','other')
 }

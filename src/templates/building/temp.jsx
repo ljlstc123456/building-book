@@ -78,10 +78,14 @@ class Temp extends Component {
 		})
 	}
 	
-	preview(img){
-		this.setState({
-			previewImg:img
-		})
+	preview(img,type='photo'){
+		window.wx.previewImage({
+			current: img, // 当前显示图片的http链接
+			urls: type==('photo'?this.state.photos:(this.state.info.houseTypes||[])).map(i=>(this.state.info.fileBaseUrl+i)) // 需要预览的图片http链接列表
+		});
+		// this.setState({
+		// 	previewImg:img
+		// })
 	}
 	closeProview(){
 		this.setState({
@@ -204,7 +208,7 @@ class Temp extends Component {
 					{
 						(this.state.info.houseTypes||[]).map(i=>{
 							return (<div>
-								<div onClick={()=>{this.preview(this.state.info.fileBaseUrl+i.image)}} className={style.img} style={{'backgroundImage':'url('+this.state.info.fileBaseUrl+i.image+')'}}></div>
+								<div onClick={()=>{this.preview(this.state.info.fileBaseUrl+i.image,'houseTypes')}} className={style.img} style={{'backgroundImage':'url('+this.state.info.fileBaseUrl+i.image+')'}}></div>
 								<p className={style.line1}>
 									{i.name?<span>{i.name}</span>:null}
 									{i.totalPrice?<span>约{i.totalPrice}/套</span>:null}

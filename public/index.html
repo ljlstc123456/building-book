@@ -37,7 +37,12 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
 		<script>
+			window.jp0 = function(res) {
+				console.log(res) ;
+			}
+			window.wx = wx ;
 		  var image = new Image();
 			image.onload  = function() {
 				document.getElementById('bg').style.backgroundImage = 'url(./bg.png)' ;
@@ -57,5 +62,6 @@
 			}
 			image.src = './bg.png'
 		</script>
+		<script src="https://apis.map.qq.com/ws/coord/v1/translate?locations=39.12,116.83;30.21,115.43&type=3&key=44YBZ-HO7KV-RZ7P2-U54DX-T36PF-UJF34&callback=jp0"></script>
   </body>
 </html>

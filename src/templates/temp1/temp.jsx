@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import jsonp from 'jsonp'
 import style from './index.module.scss'
 import ShadowBox from '../../components/shadowBox'
 import PhotoView from '../../components/photoView'
@@ -38,7 +39,15 @@ class Temp extends Component {
 	}
 	
 	componentDidMount(){
-		this.getDetail()
+		this.getDetail() ;
+		// jsonp('https://apis.map.qq.com/ws/coord/v1/translate?locations=39.12,116.83;30.21,115.43&type=3&key=44YBZ-HO7KV-RZ7P2-U54DX-T36PF-UJF34', {}, function(res){
+		// 	console.log(res)
+		// })
+		// $model.lan({
+		// 	locations:'39.12,116.83;30.21,115.43',
+		// 	type:3,
+		// 	key:'44YBZ-HO7KV-RZ7P2-U54DX-T36PF-UJF34'
+		// })
 	}
 	
 	getDetail(){
