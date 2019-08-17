@@ -75,7 +75,7 @@ class Temp extends Component {
 			this.swiper()
 		})
 		let desc = data.houseTypes.map(i=>(i.name+" "+i.structureArea)).join(",") ;
-		wx.updateAppMessageShareData({ 
+		window.wx.updateAppMessageShareData({ 
 		    title: `为您精心推荐,${data.name} 预计${data.priceRange} ${this.state.info.totalPrice||""}`, // 分享标题
 		    desc: desc, // 分享描述
 		    link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
