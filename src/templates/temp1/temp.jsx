@@ -77,7 +77,7 @@ class Temp extends Component {
 			info:{...data},
 			loading:false
 		}) ;
-		wx.updateAppMessageShareData({ 
+		window.wx.updateAppMessageShareData({ 
 		    title: `为您精心推荐,${data.area} ${data.houseTypeName||""} ${data.totalPrice||""}`, // 分享标题
 		    desc: '点击查看优质房源', // 分享描述
 		    link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
