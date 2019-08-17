@@ -75,16 +75,27 @@ class Temp extends Component {
 			this.swiper()
 		})
 		let desc = data.houseTypes.map(i=>(i.name+" "+i.structureArea)).join(",") ;
-		window.wx.updateAppMessageShareData({ 
-		    title: `为您精心推荐,${data.name} ${data.priceRange}`, // 分享标题
-		    desc: desc, // 分享描述
-		    link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
-		    imgUrl: data.fileBaseUrl+data.image, // 分享图标
-		    success: function () {
-		      // 设置成功
-		    }
+		window.wx.ready(function () {
+			let shareObj = {
+				title: `为您精心推荐,${data.name} ${data.priceRange}`, // 分享标题
+				desc: desc, // 分享描述
+				link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+				imgUrl: data.fileBaseUrl+data.image // 分享图标
+			}
+			window.wx.updateAppMessageShareData({ 
+			    ...shareObj,
+			    success: function () {
+			      // 设置成功
+			    }
+			})
+			
+			window.wx.updateTimelineShareData({ 
+			  ...shareObj,
+				success: function () {
+				  // 设置成功
+				}
+			})
 		})
-		
 	}
 	
 	preview(img){
