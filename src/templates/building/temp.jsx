@@ -79,13 +79,13 @@ class Temp extends Component {
 	}
 	
 	preview(img,type='photo'){
-		window.wx.previewImage({
-			current: img, // 当前显示图片的http链接
-			urls: type==('photo'?this.state.photos:(this.state.info.houseTypes||[])).map(i=>(this.state.info.fileBaseUrl+i)) // 需要预览的图片http链接列表
-		});
-		// this.setState({
-		// 	previewImg:img
-		// })
+		// window.wx.previewImage({
+		// 	current: img, // 当前显示图片的http链接
+		// 	urls: type==('photo'?this.state.photos:(this.state.info.houseTypes||[])).map(i=>(this.state.info.fileBaseUrl+i)) // 需要预览的图片http链接列表
+		// });
+		this.setState({
+			previewImg:img
+		})
 	}
 	closeProview(){
 		this.setState({
