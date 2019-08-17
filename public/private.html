@@ -77,4 +77,15 @@ iii. 目前，由于需要和第三方进行数据交互以保证业务顺利开
 6） 从合法公开披露的信息中收集个人信息的，如合法的新闻报道、政府信息公开等渠道。
 		</pre>
   </body>
+	<script src="https://res.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+	<script>
+		window.wx.config({
+			debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+			appId: 'wxeda45313ffa639f7', // 必填，公众号的唯一标识
+			timestamp: '1566048527', // 必填，生成签名的时间戳
+			nonceStr: '123456', // 必填，生成签名的随机串
+			signature: '175e846d0cade7b1e79bb2d1172688cbd4461755',// 必填，签名
+			jsApiList: ['previewImage','openLocation'] // 必填，需要使用的JS接口列表
+		});
+	</script>
 </html>
