@@ -1,0 +1,30 @@
+.sliderContainer{
+	position: fixed !important;
+	left:0;
+	right:0;
+	top:0;
+	height:250px;
+	.img{
+		height:250px;
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+	
+}
+.page{
+	position: absolute;
+	right:20px;
+	bottom:10px;
+	width:40px;
+	height:20px;
+	line-height: 20px;
+	background:rgba(255,255,255,0.4);
+	text-align: center;
+	border-radius:16px;
+	font-size:12px;
+	color:#efefef;
+	font-family:PingFang-SC-Medium;
+	font-weight:500;
+	z-index: 2;
+}

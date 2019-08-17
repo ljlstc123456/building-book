@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
+import Swiper from '../../components/swiper'
 import style from './index.module.scss'
 import ShadowBox from '../../components/shadowBox'
 import PhotoView from '../../components/photoView'
@@ -23,25 +24,25 @@ class Temp extends Component {
 			tel:this.props.location.search?this.props.location.search.split("=")[2]:''
 		};
 		this.preview = this.preview.bind(this) ;
-		this.closeProview = this.closeProview.bind(this) ;
+		// this.closeProview = this.closeProview.bind(this) ;
 		this.getDetail = this.getDetail.bind(this) ;
 		this.formatData = this.formatData.bind(this) ;
   }
 	
 	preview(img){
-		window.wx.previewImage({
-			current: img, // 当前显示图片的http链接
-			urls: []
-		});
 		// this.setState({
 		// 	previewImg:img
 		// })
+		window.wx.previewImage({
+			current: img, // 当前显示图片的http链接
+			urls: (this.state.info.images||"").split(',').map(i=>(this.state.info.fileBaseUrl+i))
+		});
 	}
-	closeProview(){
-		this.setState({
-			previewImg:""
-		})
-	}
+	// closeProview(){
+	// 	this.setState({
+	// 		previewImg:""
+	// 	})
+	// }
 	
 	componentDidMount(){
 		this.getDetail() ;
@@ -83,7 +84,7 @@ class Temp extends Component {
 			window.wx.openLocation({
 				latitude: this.state.lat, // 纬度，浮点数，范围为90 ~ -90
 				longitude: this.state.lng, // 经度，浮点数，范围为180 ~ -180。
-				name: '本楼盘', // 位置名
+				name: '本案', // 位置名
 				address: this.state.info.location, // 地址详情说明
 				scale: 1, // 地图缩放级别,整形值,范围从1~28。默认为最大
 				infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
@@ -128,9 +129,11 @@ class Temp extends Component {
 			  <PhotoView close={this.closeProview} img={this.state.previewImg}></PhotoView>
 				
 				{/*封面*/}
-				<div className={style.cover} style={{'backgroundImage':'url('+title+')'}}>
-					<div className={style.coverShadow}></div>
-				</div>
+				{images?(<Swiper
+					imgs={images.split(',').map(i=>(this.state.info.fileBaseUrl+i))}
+				>
+				</Swiper>):null}
+				
 				<div style={{zIndex:1,position:'relative'}}>
 					{/*基本信息*/}
 					<div className={style.baseInfo}>
@@ -191,13 +194,13 @@ class Temp extends Component {
 						{rent?(
 						<div>
 							<label>租金</label>
-							<p>{rent}</p>
+							<span>{rent}</span>
 						</div>):null
 						}
 						{returnRate?(
 						<div>
 							<label>回报率</label>
-							<p>{returnRate}</p>
+							<span>{returnRate}</span>
 						</div>
 						):null
 						}
