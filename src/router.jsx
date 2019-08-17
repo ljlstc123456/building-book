@@ -18,6 +18,12 @@ const Temp2 = (props) => (
     </Bundle>
 );
 
+const Test = (props) => (
+    <Bundle load={() => import('./templates/test/index.js')}>
+        {(Test) => <Test {...props}/>}
+    </Bundle>
+);
+
 const Building = (props) => (
     <Bundle load={() => import('./templates/building/index.js')}>
         {(Building) => <Building {...props}/>}
@@ -30,6 +36,7 @@ const router = () => {
       <Switch>
         <Route path="/1" component={Temp1} />
 		<Route path="/2" component={Temp2} />
+		<Route path="/test" component={Test} />
 		<Route path="/building" component={Building} />
       </Switch>
     </HashRouter>
