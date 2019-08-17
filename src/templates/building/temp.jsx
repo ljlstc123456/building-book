@@ -88,7 +88,6 @@ class Temp extends Component {
 			      // 设置成功
 			    }
 			})
-			
 			window.wx.updateTimelineShareData({ 
 			  ...shareObj,
 				success: function () {
