@@ -77,9 +77,10 @@ class Temp extends Component {
 			info:{...data},
 			loading:false
 		}) ;
+		document.title = data.projectName;
 		window.wx.ready(function () {
 			let shareObj = {
-				title: `为您精心推荐,${data.area} ${data.houseTypeName} ${data.totalPrice}`, // 分享标题
+				title: `为您精心推荐,${data.projectName} ${data.area} ${data.houseTypeName} ${data.totalPrice}`, // 分享标题
 				desc: '点击查看优质房源', // 分享描述
 				link: window.location.href, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
 				imgUrl: data.fileBaseUrl+data.images.split(',')[0], // 分享图标
@@ -104,7 +105,7 @@ class Temp extends Component {
 			window.wx.openLocation({
 				latitude: this.state.lat, // 纬度，浮点数，范围为90 ~ -90
 				longitude: this.state.lng, // 经度，浮点数，范围为180 ~ -180。
-				name: '本案', // 位置名
+				name: this.state.info.projectName, // 位置名
 				address: this.state.info.location, // 地址详情说明
 				scale: 14, // 地图缩放级别,整形值,范围从1~28。默认为最大
 				infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
@@ -140,6 +141,7 @@ class Temp extends Component {
 			cause,
 			fileBaseUrl,
 			location,
+			projectName,
 			images=''
 		} = this.state.info ;
 		return (
@@ -157,7 +159,7 @@ class Temp extends Component {
 				<div style={{zIndex:1,position:'relative'}}>
 					{/*基本信息*/}
 					<div className={style.baseInfo}>
-						<div className={style.title}>{houseTypeName+" "+houseNo}</div>
+						<div className={style.title}>{projectName+" "+houseTypeName+" "+houseNo}</div>
 						<ul className={style.info3}>
 							<li>
 								<p>{price}</p>

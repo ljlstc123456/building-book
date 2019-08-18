@@ -74,6 +74,7 @@ class Temp extends Component {
 		},()=>{
 			this.swiper()
 		})
+		document.title = data.name ;
 		let desc = data.houseTypes.map(i=>(i.name+" "+i.structureArea)).join(",") ;
 		window.wx.ready(function () {
 			let shareObj = {
