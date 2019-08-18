@@ -15,6 +15,8 @@ class Temp extends Component {
 			previewImg:"",
 			info:{
 			},
+			lat:'',
+			lng:'',
 			photos:[],
 			loading:true,
 			showMore:false,
@@ -50,7 +52,8 @@ class Temp extends Component {
 		var that = this;
 		if(this.props.location.search){
 			$model.project({id:this.state.id}).then(i=>{
-				this.formatData(i.data)
+				this.formatData(i.data) ;
+				this.translate(i.data.coordinate) ;
 			}).catch(i=>{
 				this.setState({
 					errorTxt:'找不到项目!'
@@ -98,6 +101,31 @@ class Temp extends Component {
 		})
 	}
 	
+	//打开地图
+	openLocation = ()=>{
+		if(this.state.lat && this.state.lng){
+			window.wx.openLocation({
+				latitude: this.state.lat, // 纬度，浮点数，范围为90 ~ -90
+				longitude: this.state.lng, // 经度，浮点数，范围为180 ~ -180。
+				name: this.state.info.name, // 位置名
+				address: this.state.info.location, // 地址详情说明
+				scale: 14, // 地图缩放级别,整形值,范围从1~28。默认为最大
+				infoUrl: '' // 在查看位置界面底部显示的超链接,可点击跳转
+			});
+		}
+	}
+	//转换地址
+	translate = (coordinate)=>{
+		let c = coordinate.split(',') ;
+		c = [c[1],c[0]].join(',') ;
+		$model.translateXY({locations:c}).then(res=>{
+			this.setState({
+				lat:res.data.locations[0].lat,
+				lng:res.data.locations[0].lng,
+			})
+		})
+	}
+	
 	preview(img){
 		window.wx.previewImage({
 			current: img, // 当前显示图片的http链接
@@ -130,7 +158,7 @@ class Temp extends Component {
 						<span style={{marginRight:'5px'}}>{this.state.info.name}</span>
 						<span className={style.tips}>{this.state.info.tag}</span>
 					</div>
-					<p className={style.minTitle}>{this.state.info.area+" "+this.state.info.location}</p>
+					<p className={style.minTitle} onClick={this.openLocation}>{this.state.info.area+" "+this.state.info.location}</p>
 					<p className={style.price}>{this.state.averagePrice}</p>
 					<div className='detailInfo' style={{padding:'10px 0px'}}>
 						<div>
