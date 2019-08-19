@@ -127,8 +127,8 @@ class Temp extends Component {
 		let {
 			projectId,
 			houseTypeId,
-			houseTypeName,
-			houseNo,
+			houseTypeName='',
+			houseNo='',
 			area,
 			storey,
 			price,
@@ -141,7 +141,7 @@ class Temp extends Component {
 			cause,
 			fileBaseUrl,
 			location,
-			projectName,
+			projectName='',
 			images=''
 		} = this.state.info ;
 		return (
