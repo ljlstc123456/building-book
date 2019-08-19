@@ -162,21 +162,17 @@ class Temp extends Component {
 						<div className={style.title}>{projectName+" "+houseTypeName+" "+houseNo}</div>
 						<ul className={style.info3}>
 							<li>
-								<p>{price}</p>
+								<p>{price||'--'}</p>
 								<p>参考均价</p>
 							</li>
 							<li>
-								<p>{totalPrice}</p>
+								<p>{totalPrice||'--'}</p>
 								<p>参考总价</p>
 							</li>
-							{payType == 'Mortgage'?(
-								<li>
-									<p>{downPayment}</p>
-									<p>首付</p>
-								</li>
-							):(<li></li>)
-							}
-							
+							<li>
+								<p>{payType == 'Mortgage'?downPayment:'--'}</p>
+								<p>首付</p>
+							</li>
 						</ul>
 					</div>
 					
@@ -186,22 +182,22 @@ class Temp extends Component {
 					<div className='detailInfo'>
 						<div>
 							<label>户型:</label>
-							<span>{houseTypeName}</span>
+							<span>{houseTypeName||"--"}</span>
 						</div>
 						<div>
 							<label>建面:</label>
-							<span>{area}</span>
+							<span>{area||"--"}</span>
 						</div>
 						{
 							payType=='Mortgage'?(
 							<React.Fragment>
 								<div>
 									<label>首付:</label>
-									<span>{downPayment}</span>
+									<span>{downPayment||"--"}</span>
 								</div>
 								<div>
 									<label>月供:</label>
-									<span>{monthlyPayment}</span>
+									<span>{monthlyPayment||"--"}</span>
 								</div>
 							</React.Fragment>):null
 						}
@@ -211,18 +207,18 @@ class Temp extends Component {
 						</div>
 						<div>
 							<label>楼层</label>
-							<span>{storey}</span>
+							<span>{storey||"--"}</span>
 						</div>
 						{rent?(
 						<div>
 							<label>租金</label>
-							<span>{rent}</span>
+							<span>{rent||"--"}</span>
 						</div>):null
 						}
 						{returnRate?(
 						<div>
 							<label>回报率</label>
-							<span>{returnRate}</span>
+							<span>{returnRate||"--"}</span>
 						</div>
 						):null
 						}
