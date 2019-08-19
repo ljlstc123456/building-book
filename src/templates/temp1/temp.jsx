@@ -160,22 +160,21 @@ class Temp extends Component {
 					{/*基本信息*/}
 					<div className={style.baseInfo}>
 						<div className={style.title}>{projectName+" "+houseTypeName+" "+houseNo}</div>
-						<ul className={style.info3}>
-							<li>
-								<p>{price||'--'}</p>
-								<p>参考均价</p>
-							</li>
-							<li>
-								<p>{totalPrice||'--'}</p>
-								<p>参考总价</p>
-							</li>
-							<li>
-								<p>{payType == 'Mortgage'?downPayment:'--'}</p>
-								<p>首付</p>
-							</li>
-						</ul>
 					</div>
-					
+					<ul className={style.info3}>
+						<li>
+							<p>{price||'--'}</p>
+							<p>参考均价</p>
+						</li>
+						<li>
+							<p>{totalPrice||'--'}</p>
+							<p>参考总价</p>
+						</li>
+						{payType == 'Mortgage'?(<li>
+							<p>{downPayment}</p>
+							<p>首付</p>
+						</li>):(<li></li>)}
+					</ul>
 					<div style={{'background':'#F4F4F4',height:'4px'}}></div>
 					
 					{/*详细信息*/}
