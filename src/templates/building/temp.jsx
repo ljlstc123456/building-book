@@ -232,7 +232,7 @@ class Temp extends Component {
 								<span>{this.state.info.propertyEnterprise}</span>
 							</div>
 							<div className="block">
-								<label>开发银行:</label>
+								<label>按揭银行:</label>
 								<span>{this.state.info.developBank}</span>
 							</div>
 							</React.Fragment>
@@ -279,6 +279,16 @@ class Temp extends Component {
 							<pre>{this.state.info.coupling}</pre>
 						</ShadowBox>
 					</div>
+					
+					<div style={{marginTop:'20px'}}>
+						<ShadowBox
+							icon={1}
+							title="教育配套"
+						>
+							<pre>{this.state.info.teachingSet}</pre>
+						</ShadowBox>
+					</div>
+					
 					
 				</div>
 				
