@@ -264,30 +264,41 @@ class Temp extends Component {
 						})
 					}
 					</div>
-					<ShadowBox
-						icon={1}
-						title="项目卖点"
-					>
-						<pre>{this.state.info.sellingPoint}</pre>
-					</ShadowBox>
 					
-					<div style={{marginTop:'20px'}}>
-						<ShadowBox
-							icon={1}
-							title="周边配套"
-						>
-							<pre>{this.state.info.coupling}</pre>
-						</ShadowBox>
-					</div>
+					{
+						this.state.info.sellingPoint?(
+							<ShadowBox
+								icon={1}
+								title="项目卖点"
+							>
+								<pre>{this.state.info.sellingPoint}</pre>
+							</ShadowBox>
+						):null
+					}
+					{
+						this.state.info.coupling?(
+							<div style={{marginTop:'20px'}}>
+								<ShadowBox
+									icon={1}
+									title="周边配套"
+								>
+									<pre>{this.state.info.coupling}</pre>
+								</ShadowBox>
+							</div>
+						):null
+					}
 					
-					<div style={{marginTop:'20px'}}>
-						<ShadowBox
-							icon={1}
-							title="教育配套"
-						>
-							<pre>{this.state.info.teachingSet}</pre>
-						</ShadowBox>
-					</div>
+					{this.state.info.teachingSet?(
+						<div style={{marginTop:'20px'}}>
+							<ShadowBox
+								icon={1}
+								title="教育配套"
+							>
+								<pre>{this.state.info.teachingSet}</pre>
+							</ShadowBox>
+						</div>
+					):null}
+					
 					
 					
 				</div>
