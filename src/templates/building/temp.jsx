@@ -292,7 +292,7 @@ class Temp extends Component {
 						<div style={{marginTop:'20px'}}>
 							<ShadowBox
 								icon={1}
-								title="教育配套"
+								title="教学配套"
 							>
 								<pre>{this.state.info.teachingSet}</pre>
 							</ShadowBox>
