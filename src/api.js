@@ -34,7 +34,7 @@ switch (process.env.NODE_ENV) {
 		baseURL = "/api";
 		break;
 	case 'production':
-		baseURL = 'https://api.sunland.vip';
+		baseURL = 'https://api.guohe.vip';
 		break;
 	case 'test1':
 		// baseURL = "http://qa.enterprise.h.idoumeng.cn/front";
