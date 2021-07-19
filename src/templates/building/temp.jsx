@@ -159,7 +159,7 @@ class Temp extends Component {
 						<span className={style.tips}>{this.state.info.tag}</span>
 					</div>
 					<p className={style.minTitle} onClick={this.openLocation}>{this.state.info.area+" "+this.state.info.location}</p>
-					<p className={style.price}>{this.state.averagePrice}</p>
+					<p className={style.price}>{this.state.info.priceRange}</p>
 					<div className='detailInfo' style={{padding:'10px 0px'}}>
 						<div>
 							<label>占地:</label>
